@@ -447,30 +447,51 @@ def setup():
     parser = Parser()
 
     # Parse arguments
-    (
-        output_d,
-        hdf_path,
-        csv_path,
-        fasta_path,
-        csv_sep,
-        uid_col,
-        html_cols,
-        pdb_d,
-        json_d,
-        reset,
-        conf,
-        pca_flag,
-        tsne_flag,
-        iterations,
-        perplexity,
-        learning_rate,
-        tsne_metric,
-        n_neighbours,
-        min_dist,
-        metric,
-        port,
-        verbose,
-    ) = parser.get_params()
+    # (
+    #     output_d,
+    #     hdf_path,
+    #     csv_path,
+    #     fasta_path,
+    #     csv_sep,
+    #     uid_col,
+    #     html_cols,
+    #     pdb_d,
+    #     json_d,
+    #     reset,
+    #     conf,
+    #     pca_flag,
+    #     tsne_flag,
+    #     iterations,
+    #     perplexity,
+    #     learning_rate,
+    #     tsne_metric,
+    #     n_neighbours,
+    #     min_dist,
+    #     metric,
+    #     port,
+    #     verbose,
+    # ) = parser.get_params()
+    output_d = "data/3FTx"
+    hdf_path = "data/3FTx/3FTx_mature_prott5.h5"
+    csv_path = "data/3FTx/3FTx.csv"
+    fasta_path = "data/3FTx/3FTx_mature.fasta"
+    csv_sep = ","
+    uid_col = 0
+    html_cols = False
+    pdb_d = None
+    json_d = None
+    reset = False
+    pca_flag = False
+    tsne_flag = False
+    iterations = 1000
+    perplexity = 30.0
+    learning_rate = "auto"
+    tsne_metric = "euclidean"
+    n_neighbours = 25
+    min_dist = 0.5
+    metric = "euclidean"
+    port = 8050
+    verbose = False
 
     required_arguments_check(hdf_path, output_d)
 
@@ -563,73 +584,68 @@ def setup():
     )
 
 
-def main():
-    """
-    Most general processing of the script
-    :return: None
-    """
-    (
-        app,
-        html,
-        df,
-        struct_container,
-        orig_id_col,
-        dim_red,
-        umap_paras,
-        umap_paras_dict,
-        tsne_paras,
-        tsne_paras_dict,
-        output_d,
-        csv_header,
-        port,
-        embeddings,
-        embedding_uids,
-        distance_dic,
-        fasta_dict,
-    ) = setup()
+(
+    app,
+    html,
+    df,
+    struct_container,
+    orig_id_col,
+    dim_red,
+    umap_paras,
+    umap_paras_dict,
+    tsne_paras,
+    tsne_paras_dict,
+    output_d,
+    csv_header,
+    port,
+    embeddings,
+    embedding_uids,
+    distance_dic,
+    fasta_dict,
+) = setup()
 
-    # don't start server if html is needed
-    if not html:
-        # different callbacks for different layout
-        if struct_container.pdb_flag:
-            get_callbacks(
-                app,
-                df,
-                orig_id_col,
-                umap_paras,
-                tsne_paras,
-                output_d,
-                csv_header,
-                embeddings,
-                embedding_uids,
-                distance_dic,
-                umap_paras_dict,
-                tsne_paras_dict,
-                fasta_dict,
-                struct_container,
-            )
-            get_callbacks_pdb(app, df, struct_container, orig_id_col)
-        else:
-            get_callbacks(
-                app,
-                df,
-                orig_id_col,
-                umap_paras,
-                tsne_paras,
-                output_d,
-                csv_header,
-                embeddings,
-                embedding_uids,
-                distance_dic,
-                umap_paras_dict,
-                tsne_paras_dict,
-                fasta_dict,
-                struct_container,
-            )
+# don't start server if html is needed
+if not html:
+    # different callbacks for different layout
+    if struct_container.pdb_flag:
+        get_callbacks(
+            app,
+            df,
+            orig_id_col,
+            umap_paras,
+            tsne_paras,
+            output_d,
+            csv_header,
+            embeddings,
+            embedding_uids,
+            distance_dic,
+            umap_paras_dict,
+            tsne_paras_dict,
+            fasta_dict,
+            struct_container,
+        )
+        get_callbacks_pdb(app, df, struct_container, orig_id_col)
+    else:
+        get_callbacks(
+            app,
+            df,
+            orig_id_col,
+            umap_paras,
+            tsne_paras,
+            output_d,
+            csv_header,
+            embeddings,
+            embedding_uids,
+            distance_dic,
+            umap_paras_dict,
+            tsne_paras_dict,
+            fasta_dict,
+            struct_container,
+        )
 
-        server = app.server
-        app.run_server(debug=True, port=port)
+
 
 
 if __name__ == "__main__":
-    main()
+    server = app.server
+    app.run_server(debug=True, port=port)
