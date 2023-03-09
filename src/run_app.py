@@ -79,7 +79,7 @@ get_callbacks(
     struct_container=structure_container,
 )
 server = app.server
-app.run_server(debug=True, port=8050)
+app.run_server()
 # app = create_app(
 #     out="../3FTx", hdf="../3FTx/3FTx_mature_prott5.h5", csv="../3FTx/3FTx.csv"
 # )
