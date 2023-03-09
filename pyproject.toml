@@ -37,11 +37,6 @@ pyyaml = "^6.0"
 kaleido = "0.2.1"
 gunicorn = "^20.1.0"
 
-[tool.poetry.group.dev.dependencies]
-black = "^22.8.0"
-dash = {extras = ["testing"], version = "^2.8.1"}
-git-filter-repo = "^2.38.0"
-
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
