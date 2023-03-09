@@ -627,6 +627,7 @@ def main():
                 struct_container,
             )
 
+        server = app.server
         app.run_server(debug=True, port=port)
 
 
