@@ -101,7 +101,7 @@ if structure_container.pdb_flag:
 
 # --- run app in webapp
 server = app.server
-app.run_server()
+app.run_server(host="0.0.0.0")
 # app = create_app(
 #     out="../3FTx", hdf="../3FTx/3FTx_mature_prott5.h5", csv="../3FTx/3FTx.csv"
 # )
