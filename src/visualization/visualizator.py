@@ -450,6 +450,39 @@ class Visualizator:
                 x = "x_tsne_2D"
                 y = "y_tsne_2D"
 
+                # customized colors
+        colors_custom = {
+            # 3FTx
+            "frog Ly6": (0, 167, 157),
+            "GPIHBP1": (177, 224, 225),
+            "Ly6 unique": (230, 214, 214),
+            "Ly6D": (224, 131, 182),
+            "Ly6E": (237, 32, 36),
+            "Ly6H": (154, 76, 157),
+            "Ly6K": (236, 185, 185),
+            "Ly6L": (144, 35, 35),
+            "LYNX1": (214, 185, 217),
+            "LYPD2": (61, 91, 169),
+            "PSCA": (150, 138, 194),
+            "Reptilian Ly6 group 6": (241, 90, 41),
+            "Reptilian Ly6 group 7": (244, 119, 69),
+            "Non-human mammalian Ly6": (107, 44, 140),
+            "Reptilian Ly6 group 1": (189, 82, 42),
+            "Reptilian Ly6 group 1-2": (189, 82, 42),
+            "Reptilian Ly6 group 2": (248, 172, 79),
+            "Reptilian Ly6 group 3": (247, 146, 30),
+            "Reptilian Ly6 group 5": (255, 201, 25),
+            "SLURP1": (72, 139, 202),
+            "SLURP2": (232, 56, 149),
+            "Reptilian Ly6 group 4": (247, 236, 19),
+            "Non-standard": (120, 142, 66),
+            "Plesiotypic": (103, 189, 69),
+            "Short-chain": (99, 203, 229),
+            "Long-chain": (36, 99, 143),
+            "LYNX1-SLURP2 readthrough": (0, 0, 0),
+            "Ly6 other": (64, 64, 64),
+        }
+
         # iterate over different values of the selected column
         for group_idx, group_value in enumerate(col_groups):
             # Show only nan in legend if colorbar is shown
@@ -466,7 +499,10 @@ class Visualizator:
             else:
                 opacity = 1.0
                 symbol = Visualizator.SYMBOLS[group_idx % n_symbols]
-                color = f"rgb{color_list[group_idx]}"
+                if group_value in colors_custom:
+                    color = f"rgb{colors_custom[group_value]}"
+                else:
+                    color = f"rgb{color_list[group_idx]}"
 
             # extract df with only group value
             if not pd.isna(group_value):

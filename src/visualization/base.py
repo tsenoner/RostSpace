@@ -196,9 +196,9 @@ def get_graph_offcanvas(
             # ),
             # html.Br(),
             dbc.Switch(
-              id="correlation_collapse_switch",
-              label="Display correlation scores",
-              value=False,
+                id="correlation_collapse_switch",
+                label="Display correlation scores",
+                value=False,
             ),
             html.Br(),
             dcc.Markdown("Dimensionality reduction"),
@@ -544,9 +544,7 @@ def get_graph_container(
 
 def get_correlation_scores_collapse():
     collapse = dbc.Collapse(
-        id="correlation_collapse",
-        is_open=False,
-        style={"margin-top": "5px"}
+        id="correlation_collapse", is_open=False, style={"margin-top": "5px"}
     )
 
     return collapse
@@ -565,24 +563,18 @@ def get_disclaimer_modal():
                     dbc.Alert(
                         color="warning",
                         children=[
-                            dcc.Markdown(
-                                """
+                            dcc.Markdown("""
                             This is the ProtSpace3D tool. There is no usage summary statistics provided by
                             the developers.
-                            """
-                            ),
-                            dcc.Markdown(
-                                """
+                            """),
+                            dcc.Markdown("""
                             Considering the data collection in the background and the displayed in the web application,
                             the Python library Dash is used and liable.
-                            """
-                            ),
-                            dcc.Markdown(
-                                """
+                            """),
+                            dcc.Markdown("""
                             Please refer to the policy of its developers Plotly: https://plotly.com/privacy/
                             for more information.
-                            """
-                            ),
+                            """),
                         ],
                     )
                 ]
@@ -681,27 +673,62 @@ def get_help_modal():
                                 ]
                             ),
                             dbc.ListGroupItem(
-                              children=[
-                                  html.H4("Molecule selection"),
-                                  html.P(
-                                      "The drop-down menu showing the selected moleulce(s), is located either right "
-                                      "to the group selection, or above the molecule viewer. This depends on whether "
-                                      "the molecule viewer section is displayed or not."
-                                  ),
-                                  html.P(
-                                      "A molecule is selected by clicking on the corresponding data point "
-                                      "in the graph. The selected molecule is then listed in the corresponding "
-                                      "drop-down menu and indicated with a black circle in the graph. It can be "
-                                      "deselected by deleting the entry in the drop-down menu."
-                                  ),
-                                  html.P(
-                                      "In the drop-down menu the selected molecule(s) are displayed. More can"
-                                      " be selected by opening the drop-down menu. By doing so the selected "
-                                      "molecules are indicated with a white circle. With the x next to the "
-                                      "molecule ID it can be deselected, and with the x on the right side of "
-                                      "the drop-down menu everything can be deselected at once."
-                                  ),
-                              ]
+                                children=[
+                                    html.H4("Molecule selection"),
+                                    html.P(
+                                        "The drop-down menu showing the"
+                                        " selected moleulce(s), is located"
+                                        " either right to the group selection,"
+                                        " or above the molecule viewer. This"
+                                        " depends on whether the molecule"
+                                        " viewer section is displayed or not."
+                                    ),
+                                    html.P(
+                                        "A molecule is selected by clicking on"
+                                        " the corresponding data point in the"
+                                        " graph. The selected molecule is then"
+                                        " listed in the corresponding drop-down"
+                                        " menu and indicated with a black"
+                                        " circle in the graph. It can be"
+                                        " deselected by deleting the entry in"
+                                        " the drop-down menu."
+                                    ),
+                                    html.P(
+                                        "In the drop-down menu the selected"
+                                        " molecule(s) are displayed. More can"
+                                        " be selected by opening the drop-down"
+                                        " menu. By doing so the selected"
+                                        " molecules are indicated with a white"
+                                        " circle. With the x next to the"
+                                        " molecule ID it can be deselected, and"
+                                        " with the x on the right side of the"
+                                        " drop-down menu everything can be"
+                                        " deselected at once."
+                                    ),
+                                    html.P(
+                                        (
+                                            "Molecule structure predictions are"
+                                            " made using Colabfold:"
+                                        ),
+                                        style={
+                                            "margin": "0",
+                                        },
+                                    ),
+                                    html.P(
+                                        (
+                                            "Mirdita, M., Schütze, K.,"
+                                            " Moriwaki, Y., Heo, L.,"
+                                            " Ovchinnikov, S. and Steinegger,"
+                                            " M., 2022. ColabFold: making"
+                                            " protein folding accessible to"
+                                            " all. Nature methods, 19(6),"
+                                            " pp.679-682."
+                                        ),
+                                        style={
+                                            "font-size": "12px",
+                                        },
+                                    ),
+                                ]
                             ),
                             dbc.ListGroupItem(
                                 children=[
@@ -899,6 +926,13 @@ def get_header(app: Dash):
                                     hidden=True,
                                 )
                             ],
+                        ),
+                        dcc.Link(
+                            children=[
+                                html.H4("bioRxiv.org", style={"color": "white"})
+                            ],
+                            href="https://www.biorxiv.org/content/10.1101/2022.12.15.520616v1",
+                            target="_blank",
                         ),
                     ],
                 ),
