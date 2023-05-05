@@ -707,8 +707,8 @@ def get_help_modal():
                                     ),
                                     html.P(
                                         (
-                                            "Molecule structure predictions are"
-                                            " made using Colabfold:"
+                                            "Molecule structures are predicted"
+                                            " predictions using Colabfold:"
                                         ),
                                         style={
                                             "margin": "0",
@@ -725,7 +725,7 @@ def get_help_modal():
                                             " pp.679-682."
                                         ),
                                         style={
-                                            "font-size": "12px",
+                                            "font-size": "13px",
                                         },
                                     ),
                                 ]
