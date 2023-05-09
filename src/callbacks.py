@@ -286,6 +286,7 @@ def get_callbacks_pdb(
         struct_path = str(struct_container.get_structure_dir()) + "/"
 
         # check whether .pdb file is present
+        seq_ids = [seq_id.replace(".", "_") for seq_id in seq_ids]
         for seq in seq_ids:
             if seq not in dd_molecules_save:
                 file_path = Path(struct_path + seq + ".pdb")

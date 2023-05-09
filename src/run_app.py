@@ -12,6 +12,12 @@ csv_path = out_dir / "3FTx.csv"
 fasta_path = out_dir / "3FTx_mature.fasta"
 pdb_dir = out_dir / "colabfold"  # None
 
+# remove `.` (dot) from pdb filenames as the ngl_viewer has issues with it
+for file in Path(pdb_dir).glob("*.pdb"):
+    if "." in file.stem:
+        new_file = file.with_stem(f"{file.stem.replace('.', '_')}")
+        file.rename(new_file)
+
 # put UMAP parameters in dictionary
 umap_paras = dict()
 umap_paras["n_neighbours"] = 25
