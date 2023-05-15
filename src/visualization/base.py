@@ -931,7 +931,7 @@ def get_header(app: Dash):
                             children=[
                                 html.H4("bioRxiv.org", style={"color": "white"})
                             ],
-                            href="https://www.biorxiv.org/content/10.1101/2022.12.15.520616v1",
+                            href="https://www.biorxiv.org/content/10.1101/2022.12.15.520616v2",
                             target="_blank",
                         ),
                     ],
